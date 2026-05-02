@@ -2,7 +2,6 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Summary from "./components/Summary";
 import Expertise from "./components/Expertise";
-import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import { motion, useScroll, useSpring } from "motion/react";
 
@@ -28,7 +27,6 @@ export default function App() {
         <Hero />
         <Summary />
         <Expertise />
-        <Experience />
         <Contact />
       </main>
 

@@ -8,7 +8,6 @@ export default function Header() {
   const navLinks = [
     { name: "About", href: "#about" },
     { name: "Expertise", href: "#expertise" },
-    { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -37,13 +36,14 @@ export default function Header() {
               {link.name}
             </motion.a>
           ))}
-          <motion.button 
+          <motion.a
+            href="#contact"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="px-5 py-2 rounded-full bg-brand-accent text-brand-bg font-bold text-sm"
           >
             LET'S CONNECT
-          </motion.button>
+          </motion.a>
         </div>
 
         {/* Mobile Menu Button */}

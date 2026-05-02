@@ -35,9 +35,12 @@ export default function Hero() {
               VIEW SUCCESS STORIES
               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </button>
-            <button className="px-8 py-4 rounded-full border border-white/10 font-bold hover:bg-white/5 transition-colors">
+            <a
+              href="#contact"
+              className="px-8 py-4 rounded-full border border-white/10 font-bold hover:bg-white/5 transition-colors inline-flex items-center justify-center"
+            >
               GET IN TOUCH
-            </button>
+            </a>
           </div>
         </motion.div>
 

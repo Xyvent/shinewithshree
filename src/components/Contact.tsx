@@ -1,12 +1,20 @@
 import { motion } from "motion/react";
-import { Linkedin, Mail, Instagram, Youtube, Twitter, Phone } from "lucide-react";
+import { Linkedin, Mail, Instagram, Youtube, Phone } from "lucide-react";
+
+function XBrandIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
 
 export default function Contact() {
   const socialLinks = [
-    { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/in/shinewithshree" },
-    { icon: <Instagram className="w-5 h-5" />, href: "#" },
-    { icon: <Twitter className="w-5 h-5" />, href: "#" },
-    { icon: <Youtube className="w-5 h-5" />, href: "#" },
+    { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/in/shinewithshree", label: "LinkedIn" },
+    { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/shinewithshree/", label: "Instagram" },
+    { icon: <XBrandIcon className="w-5 h-5" />, href: "https://x.com/shinewithshree", label: "X" },
+    { icon: <Youtube className="w-5 h-5" />, href: "https://www.youtube.com/@shinewithshree", label: "YouTube" },
   ];
 
   return (
@@ -31,11 +39,11 @@ export default function Contact() {
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-16">
             <a 
-              href="mailto:hello.shreesharma@gmail.com" 
+              href="mailto:shinewithshree@gmail.com" 
               className="flex items-center gap-3 px-8 py-4 rounded-full bg-white text-brand-bg font-bold hover:bg-brand-accent transition-colors"
             >
               <Mail className="w-5 h-5" />
-              hello.shreesharma@gmail.com
+              shinewithshree@gmail.com  
             </a>
             <div className="flex items-center gap-3 px-8 py-4 rounded-full glass border-white/10 font-bold">
               <Phone className="w-5 h-5 text-brand-accent" />
@@ -48,6 +56,9 @@ export default function Contact() {
               <motion.a
                 key={i}
                 href={link.href}
+                aria-label={link.label}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 whileHover={{ y: -5, color: "#EAB308" }}
                 className="p-4 rounded-full glass border-white/5 text-slate-400 transition-colors"
               >
