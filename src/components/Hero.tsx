@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowUpRight, TrendingUp, ShieldCheck, Zap } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import profileImage from "../assets/profile.png";
 
 export default function Hero() {
@@ -58,44 +58,7 @@ export default function Hero() {
               draggable={false}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/90 via-transparent to-transparent pointer-events-none" />
-            
-            <div className="absolute bottom-8 left-8 right-8 space-y-4">
-              <div className="glass p-4 rounded-2xl flex items-center gap-4">
-                <div className="p-3 bg-brand-accent/20 rounded-xl">
-                  <TrendingUp className="text-brand-accent w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-xs text-brand-muted uppercase font-bold tracking-wider">Revenue Growth</div>
-                  <div className="text-xl font-display font-bold">EXPERT STRATEGY</div>
-                </div>
-              </div>
-            </div>
           </div>
-
-          {/* Floating Stats */}
-          <motion.div 
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-6 -right-4 glass p-6 rounded-2xl hidden md:block"
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <ShieldCheck className="text-brand-accent w-5 h-5" />
-              <div className="text-[10px] font-bold text-brand-muted uppercase tracking-widest leading-none">Security & Trust</div>
-            </div>
-            <div className="text-2xl font-display font-bold">100% RELIABLE</div>
-          </motion.div>
-
-          <motion.div 
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute top-1/2 -left-10 glass p-6 rounded-2xl hidden md:block"
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <Zap className="text-brand-accent w-5 h-5" />
-              <div className="text-[10px] font-bold text-brand-muted uppercase tracking-widest leading-none">Agile Approach</div>
-            </div>
-            <div className="text-2xl font-display font-bold">SCALABLE OPS</div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
