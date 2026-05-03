@@ -1,0 +1,5 @@
+# https://www.shinewithshree.com — Shree Sharma / Shine With Shree
+User-agent: *
+Allow: /
+
+Sitemap: https://www.shinewithshree.com/sitemap.xml
