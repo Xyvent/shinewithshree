@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import profileImage from "../assets/profile.png";
 
@@ -31,10 +32,13 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <button className="px-8 py-4 rounded-full bg-white text-brand-bg font-bold flex items-center gap-2 hover:bg-brand-accent transition-colors group">
+            <Link
+              to="/success-stories"
+              className="px-8 py-4 rounded-full bg-white text-brand-bg font-bold flex items-center gap-2 hover:bg-brand-accent transition-colors group"
+            >
               VIEW SUCCESS STORIES
               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </button>
+            </Link>
             <a
               href="#contact"
               className="px-8 py-4 rounded-full border border-white/10 font-bold hover:bg-white/5 transition-colors inline-flex items-center justify-center"
