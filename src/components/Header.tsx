@@ -14,13 +14,15 @@ export default function Header() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b-0 border-white/5">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <motion.div 
+        <motion.a
+          href="#hero"
+          onClick={() => setIsOpen(false)}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="font-display font-bold text-xl tracking-tighter"
+          className="font-display font-bold text-xl tracking-tighter text-inherit hover:text-brand-accent transition-colors"
         >
           SHREE<span className="text-brand-accent">.</span>SHARMA
-        </motion.div>
+        </motion.a>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">

@@ -15,6 +15,11 @@
   body {
     @apply bg-brand-bg text-slate-100 font-sans antialiased selection:bg-brand-accent selection:text-brand-bg;
   }
+
+  /* In-page links: place section top below fixed header (h-20) + progress bar, not hidden under them */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
 }
 
 .glass {
