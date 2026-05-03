@@ -2,17 +2,18 @@ import { motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import type { To } from "react-router-dom";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation();
   const isStories = pathname.startsWith("/success-stories");
 
-  const navLinks = [
-    { name: "About", to: "/#about" },
-    { name: "Expertise", to: "/#expertise" },
+  const navLinks: { name: string; to: To }[] = [
+    { name: "About", to: { pathname: "/", hash: "#about" } },
+    { name: "Expertise", to: { pathname: "/", hash: "#expertise" } },
     { name: "Stories", to: "/success-stories" },
-    { name: "Contact", to: "/#contact" },
+    { name: "Contact", to: { pathname: "/", hash: "#contact" } },
   ];
 
   const linkClass = (active: boolean) =>
@@ -24,7 +25,7 @@ export default function Header() {
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b-0 border-white/5">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link
-          to="/"
+          to={{ pathname: "/", hash: "#hero" }}
           onClick={() => setIsOpen(false)}
           className="font-display font-bold text-xl tracking-tighter text-inherit hover:text-brand-accent transition-colors"
         >
@@ -50,7 +51,7 @@ export default function Header() {
           ))}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
-              to="/#contact"
+              to={{ pathname: "/", hash: "#contact" }}
               className="inline-block px-5 py-2 rounded-full bg-brand-accent text-brand-bg font-bold text-sm"
             >
               LET&apos;S CONNECT
@@ -82,7 +83,7 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            to="/#contact"
+            to={{ pathname: "/", hash: "#contact" }}
             onClick={() => setIsOpen(false)}
             className="text-2xl font-display font-medium text-brand-accent"
           >
