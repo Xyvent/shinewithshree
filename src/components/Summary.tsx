@@ -40,7 +40,7 @@ export default function Summary() {
             <Quote className="absolute -top-6 -left-6 w-24 h-24 text-brand-accent opacity-10" />
             <div className="relative z-10 space-y-8">
               <div className="space-y-2">
-                <div className="text-4xl font-display font-bold">10+</div>
+                <div className="text-4xl font-display font-bold">15+</div>
                 <div className="text-xs font-bold text-brand-muted uppercase tracking-[0.2em]">Years Global Experience</div>
               </div>
               <div className="space-y-2">
