@@ -1,0 +1,21 @@
+fragment InsightParts on Insight {
+  __typename
+  title
+  description
+  date
+  draft
+  tag
+  heroImage
+  body
+}
+
+fragment PerspectiveParts on Perspective {
+  __typename
+  title
+  description
+  date
+  draft
+  tag
+  heroImage
+  body
+}

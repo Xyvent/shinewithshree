@@ -3,16 +3,22 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import type { To } from "react-router-dom";
+import { siteConfig } from "../config/site";
+import { BrandWordmark } from "./BrandWordmark";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation();
   const isStories = pathname.startsWith("/success-stories");
+  const isInsights = pathname.startsWith("/insights");
+  const isPerspectives = pathname.startsWith("/perspectives");
 
-  const navLinks: { name: string; to: To }[] = [
+  const navLinks: { name: string; to: To; active?: boolean }[] = [
     { name: "About", to: { pathname: "/", hash: "#about" } },
     { name: "Expertise", to: { pathname: "/", hash: "#expertise" } },
-    { name: "Stories", to: "/success-stories" },
+    { name: "Stories", to: "/success-stories", active: isStories },
+    { name: siteConfig.writing.insightsLabel, to: "/insights", active: isInsights },
+    { name: siteConfig.writing.perspectivesLabel, to: "/perspectives", active: isPerspectives },
     { name: "Contact", to: { pathname: "/", hash: "#contact" } },
   ];
 
@@ -29,7 +35,7 @@ export default function Header() {
           onClick={() => setIsOpen(false)}
           className="font-display font-bold text-xl tracking-tighter text-inherit hover:text-brand-accent transition-colors"
         >
-          SHREE<span className="text-brand-accent">.</span>SHARMA
+          <BrandWordmark />
         </Link>
 
         {/* Desktop Nav */}
@@ -43,7 +49,7 @@ export default function Header() {
             >
               <Link
                 to={link.to}
-                className={linkClass(link.name === "Stories" ? isStories : false)}
+                className={linkClass(link.active ?? false)}
               >
                 {link.name}
               </Link>

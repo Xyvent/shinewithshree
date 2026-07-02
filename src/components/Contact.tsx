@@ -1,5 +1,7 @@
 import { motion } from "motion/react";
 import { Linkedin, Mail, Instagram, Youtube, Phone } from "lucide-react";
+import { siteConfig } from "../config/site";
+import { BrandWordmark } from "./BrandWordmark";
 
 function XBrandIcon({ className }: { className?: string }) {
   return (
@@ -18,22 +20,22 @@ export default function Contact() {
   const socialLinks = [
     {
       icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com/in/shinewithshree",
+      href: siteConfig.social.linkedin,
       label: "LinkedIn",
     },
     {
       icon: <Instagram className="w-5 h-5" />,
-      href: "https://www.instagram.com/shinewithshree/",
+      href: siteConfig.social.instagram,
       label: "Instagram",
     },
     {
       icon: <XBrandIcon className="w-5 h-5" />,
-      href: "https://x.com/shinewithshree",
+      href: siteConfig.social.x,
       label: "X",
     },
     {
       icon: <Youtube className="w-5 h-5" />,
-      href: "https://www.youtube.com/@shinewithshree",
+      href: siteConfig.social.youtube,
       label: "YouTube",
     },
   ];
@@ -63,15 +65,15 @@ export default function Contact() {
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-16">
             <a
-              href="mailto:shinewithshree@gmail.com"
+              href={`mailto:${siteConfig.email}`}
               className="flex items-center gap-3 px-8 py-4 rounded-full bg-white text-brand-bg font-bold hover:bg-brand-accent transition-colors"
             >
               <Mail className="w-5 h-5" />
-              shinewithshree@gmail.com
+              {siteConfig.email}
             </a>
             <div className="flex items-center gap-3 px-8 py-4 rounded-full glass border-white/10 font-bold">
               <Phone className="w-5 h-5 text-brand-accent" />
-              +91 98934 23395
+              {siteConfig.phone}
             </div>
           </div>
 
@@ -102,11 +104,9 @@ export default function Contact() {
 
       <footer className="mt-20 py-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="font-display font-bold tracking-tighter text-slate-500">
-          SHREE<span className="text-brand-accent">.</span>SHARMA
+          <BrandWordmark />
         </div>
-        <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-          &copy; 2026 SHREE SHARMA. DESIGNED FOR EMPOWERMENT.
-        </div>
+        <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{siteConfig.footer.copyright}</div>
         <div className="flex gap-8">
           <a
             href="#"

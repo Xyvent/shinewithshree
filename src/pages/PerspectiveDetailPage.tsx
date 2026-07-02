@@ -1,0 +1,42 @@
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import PageMeta from "../components/PageMeta";
+import ContentDetailLayout from "../components/ContentDetailLayout";
+import { siteConfig } from "../config/site";
+import { getPerspectiveBySlug } from "../data/content.generated";
+
+export default function PerspectiveDetailPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const post = slug ? getPerspectiveBySlug(slug) : undefined;
+
+  if (!post) {
+    return (
+      <>
+        <PageMeta title={`Not found | ${siteConfig.name}`} path="/perspectives" />
+        <div className="pt-32 pb-24 section-padding text-center">
+          <p className="text-slate-400 mb-6">This perspective could not be found.</p>
+          <Link
+            to="/perspectives"
+            className="inline-flex items-center gap-2 text-brand-accent font-bold hover:underline"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to perspectives
+          </Link>
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <PageMeta
+        title={`${post.title} | ${siteConfig.name}`}
+        description={post.description}
+        path={`/perspectives/${post.slug}`}
+        image={post.heroImage}
+        type="article"
+      />
+      <ContentDetailLayout post={post} backLabel="All perspectives" backPath="/perspectives" />
+    </>
+  );
+}

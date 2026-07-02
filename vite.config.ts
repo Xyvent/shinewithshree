@@ -1,24 +1,42 @@
-import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
-import {defineConfig, loadEnv} from 'vite';
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+import { execSync } from "node:child_process";
+import { defineConfig, loadEnv, type Plugin } from "vite";
 
-export default defineConfig(({mode}) => {
-  const env = loadEnv(mode, '.', '');
+function generateContentPlugin(): Plugin {
   return {
-    plugins: [react(), tailwindcss()],
+    name: "generate-content",
+    buildStart() {
+      execSync("tsx scripts/generate-content.ts", { stdio: "inherit" });
+    },
+    configureServer(server) {
+      const watchDirs = ["content/insights", "content/perspectives"];
+      watchDirs.forEach((dir) => server.watcher.add(path.resolve(__dirname, dir)));
+      server.watcher.on("change", (file) => {
+        if (file.includes(`${path.sep}content${path.sep}`)) {
+          execSync("tsx scripts/generate-content.ts", { stdio: "inherit" });
+          server.ws.send({ type: "full-reload" });
+        }
+      });
+    },
+  };
+}
+
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, ".", "");
+  return {
+    plugins: [generateContentPlugin(), react(), tailwindcss()],
     define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+      "process.env.GEMINI_API_KEY": JSON.stringify(env.GEMINI_API_KEY),
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        "@": path.resolve(__dirname, "."),
       },
     },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
-      hmr: process.env.DISABLE_HMR !== 'true',
+      hmr: process.env.DISABLE_HMR !== "true",
     },
   };
 });
