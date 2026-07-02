@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Tina admin entry point
+  RewriteRule ^admin/?$ /admin/index.html [L,R=302]
+
+  # Serve existing files and directories as-is
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # SPA fallback (exclude admin assets)
+  RewriteCond %{REQUEST_URI} !^/admin/
+  RewriteRule ^ index.html [L]
+</IfModule>

@@ -111,52 +111,35 @@ Preview production build:
 npm run preview
 ```
 
-## Deploy (Netlify / Vercel)
+## Deploy (Hostinger)
 
-Both platforms rebuild automatically when Tina pushes a Git commit.
+This site is a static Vite build. Hostinger shared hosting serves the contents of `dist/` from your domain's document root (usually `public_html`).
 
-### Netlify
+### Build locally
 
-| Setting        | Value              |
-|----------------|--------------------|
-| Build command  | `npm run build`    |
-| Publish directory | `dist`          |
-| Base directory | repo root          |
+Set Tina env vars in `.env` (see [Tina Cloud setup](#tina-cloud-setup)), then:
 
-**Environment variables** (Site settings → Environment):
+```bash
+npm run build
+```
+
+The build copies the Tina admin UI into `dist/admin/` and includes `public/.htaccess` for Apache SPA routing.
+
+### Upload to Hostinger
+
+1. In hPanel, open **File Manager** (or connect via FTP/SFTP).
+2. Upload **everything inside** `dist/` to `public_html` (not the `dist` folder itself).
+3. Ensure `.htaccess` is present in `public_html` — it handles client-side routes and `/admin` redirects.
+
+After Tina commits new content, rebuild locally and re-upload `dist/`, or automate with a CI job that builds and deploys via FTP.
+
+### Environment variables
+
+Tina credentials are only needed at **build time** (not on the Hostinger server):
 
 - `TINA_CLIENT_ID`
 - `TINA_TOKEN`
 - `TINA_BRANCH` (e.g. `main`)
-
-**Admin UI:** Add a redirect or second publish path so `/admin/*` serves the `admin/` folder. Common pattern — add to `public/_redirects` or `netlify.toml`:
-
-```toml
-[[redirects]]
-  from = "/admin/*"
-  to = "/admin/:splat"
-  status = 200
-```
-
-Copy or configure the `admin/` output to be deployed alongside `dist/` (e.g. copy `admin` into `dist/admin` in a post-build step, or use Netlify's `publish = "dist"` with `admin` copied during build).
-
-Recommended post-build copy in `package.json`:
-
-```json
-"build": "npm run generate:content && tinacms build && vite build && cp -r admin dist/admin"
-```
-
-### Vercel
-
-| Setting        | Value              |
-|----------------|--------------------|
-| Framework      | Vite               |
-| Build command  | `npm run build`    |
-| Output directory | `dist`           |
-
-Add the same Tina env vars in Project Settings → Environment Variables.
-
-For SPA routing, ensure `vercel.json` rewrites unknown paths to `index.html` while excluding `/admin`.
 
 ## Site configuration
 
