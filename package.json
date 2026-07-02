@@ -7,10 +7,10 @@
     "generate:content": "tsx scripts/generate-content.ts",
     "dev": "tinacms dev -c \"vite --port=3000 --host=0.0.0.0\"",
     "dev:site": "vite --port=3000 --host=0.0.0.0",
-    "build": "npm run generate:content && tinacms build && vite build && cp -r admin dist/admin",
+    "build": "npm run generate:content && tinacms build && vite build",
     "build:site": "npm run generate:content && vite build",
     "preview": "vite preview",
-    "clean": "rm -rf dist admin",
+    "clean": "rm -rf dist admin public/admin",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
