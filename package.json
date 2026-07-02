@@ -9,6 +9,7 @@
     "dev:site": "vite --port=3000 --host=0.0.0.0",
     "build": "npm run generate:content && tinacms build && vite build",
     "build:site": "npm run generate:content && vite build",
+    "start": "node server.js",
     "preview": "vite preview",
     "clean": "rm -rf dist admin public/admin",
     "lint": "tsc --noEmit"
